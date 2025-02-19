@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Letter Animation</title>
+    <style>
+        body {
+            text-align: center; 
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #fce4ec;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .envelope {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            background-color: #c4a484;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            overflow: hidden;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            transition: opacity 1s ease-in-out;
+            z-index: 2;
+        }
+        .flap {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 50%;
+            background-color: #a67b5b;
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+            transition: transform 0.6s ease-in-out;
+            transform-origin: top;
+            z-index: 4;
+        }
+        .heart-stamp {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+            border: 2px solid white;
+            transform: translate(-50%, -50%);
+            z-index: 5;
+        }
+        .arrow {
+            position: absolute;
+            top: 70%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            color: #4E342E;
+            font-weight: bold;
+            font-family: 'Poppins', sans-serif;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 5px 10px;
+            border-radius: 10px;
+        }
+        .open .envelope {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .letter {
+            position: absolute;
+            width: 280px;
+            height: auto;
+            max-height: 500px;
+            background-color: white;
+            border-radius: 5px;
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            font-family: 'Dancing Script', cursive;
+            font-size: 10px;
+            text-align: center;
+            line-height: 1.5;
+            z-index: 1;
+            overflow-y: auto;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+        .open .letter {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .page-button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            font-size: 14px;
+            cursor: pointer;
+            background-color: #a67b5b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" onclick="toggleLetter()">
+        <div class="envelope">
+            <div class="flap"></div>
+            <div class="heart-stamp">❤</div>
+            <div class="arrow">Please click here, my love ❤️</div>
+        </div>
+        <div class="letter" id="page1">
+            <p>Hi bubu...<br><br>Happy Birthday!🎉🎂<br><br>
+            aapko janm din ki bohot sari shubhkamnaye, mujhe nhi pta letter kaise likhte hai pr baby ye pasand kr lena.<br><br>
+            mujhe pura krne ke liye thank you meri jaan... jab pehle aapko dekha tha facebook profile pr tbhi mere dilki ghanti bach gyi thi ki kuch to hai ismme,aur wo ghanti abhi bh rukne ka naam nhi le rhi.<br><br>
+            meri iss kali raat mai roshni dene wala Chandra (Chandra Bhushan Savarn)banne ke liye thankyou,socha bhi nhi tha ki kisi pe itna jyada fidaa ho jaungi..<br><br>
+            I hope aaj aapko utni hiii khushi milegi jitni aap mere zindagi mai lekar aaye ho i hope kya meri saari khushi lelo pr din aapka khushi mai hii jana chahiye.<br>
+            <button class="page-button" onclick="nextPage(event)">Next Page</button></p>
+        </div>
+        <div class="letter" id="page2" style="display: none;">
+            <p>ahhh kitna achha din hai ye mujhe lgta hai harbaar ki mera birthday hai,bohot khush hoti hoon iss din.., excited hoti hoon ki kya kya kru main aapke liye, abhi to yahi kr skti hoon. aur aur aur ek baat reh gyi<br><br>
+            Special thanks aapke maa papa ko(aap smj lo).<br><br>
+            mera dimag hiii nhi chal rha kya likhu abhi yahi rukti hoon.<br><br>
+            aapki aur sirf aapki bhakti <br><br>
+            I love you so much baby<br><br>
+            Forever yours,<br> ❤️</p>
+        </div>
+    </div>
+    <script>
+        function toggleLetter() {
+            const container = document.querySelector('.container');
+            container.classList.toggle('open');
+        }
+        function nextPage(event) {
+            event.stopPropagation();
+            document.getElementById('page1').style.display = 'none';
+            document.getElementById('page2').style.display = 'flex';
+        }
+    </script>
+</body>
+</html>
+
